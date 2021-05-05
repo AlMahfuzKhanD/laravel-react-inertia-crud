@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +19,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/user', 'UserCOntroller@index');
+
+Route::get('/todos', 'TodoController@index');
+Route::get('/todos/create', 'TodoController@create');
+Route::get('/todos/edit', 'TodoController@edit');
+Route::post('/todos/create', 'TodoController@store');
+
+
+
+
+Route::post('/upload' ,'UserController@uploadImage');
+
+Route::get('/user', 'UserController@index');
 
 Auth::routes();
 

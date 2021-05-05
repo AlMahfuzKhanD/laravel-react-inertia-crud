@@ -16,6 +16,16 @@
 
                     {{ __('You are logged in!') }}
                 </div>
+
+                <div class="card-body">
+                    {{-- {{ View::make('layouts.flash') }} --}}
+                    <x-alert />
+                    <form action="/upload" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <input type="file" name="image" id="">
+                        <input type="submit" value="upload">
+                    </form>
+                </div>
             </div>
         </div>
     </div>

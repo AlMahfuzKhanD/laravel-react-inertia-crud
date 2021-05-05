@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
 class UserController extends Controller
 {
     //
@@ -44,4 +45,22 @@ class UserController extends Controller
             return $user;
         //  return view('home');
     }
+
+
+//image upload
+
+
+    public function uploadImage(Request $request)
+    {
+        if($request->hasFile('image')){
+          User::uploadImage($request->image);
+          
+          return redirect()->back()->with('message', 'Task was successful!');
+        }
+
+        
+        return redirect()->back()->with('error', 'Task was not successful!');
+    }
+
+    
 }
