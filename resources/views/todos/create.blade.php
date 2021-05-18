@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Todos</title>
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body>
-
-    <div class="text-center pt-10">
-        <h3 class="text-2xl">What Next you need to do</h3>
+@extends('todos.layouts')
+@section('content')
+<h3 class="text-2xl border-b pb-4">What Next you need to do</h3>
         
         <x-alert/>
 
@@ -19,7 +9,5 @@
             <input type="text" name="title" id="" class="py-2 px-2 border rounded">
             <input type="submit" value="Create" class="p-2 border rounded">
         </form>
-    </div>
-    
-</body>
-</html>
+        <a class="m-5 py-2 px-1 rounded bg-blue-400 text-white " href="/todos">All Todo</a>
+@endsection

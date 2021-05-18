@@ -12,7 +12,9 @@ class TodoController extends Controller
     //
     public function index()
     {
-        return view('todos.index');
+        $todos = Todo::all();
+        
+        return view('todos.index')->with(['todos'=>$todos]);
     }
 
     public function create()
@@ -20,9 +22,18 @@ class TodoController extends Controller
         return view('todos.create');
     }
 
-    public function edit()
+    public function edit(Todo $todo)
+    {   
+        return view('todos.edit', compact('todo'));
+    }
+
+    public function update(TodoCreateRequest $request, Todo $todo)
     {
-        return view('todos.edit');
+        
+        //dd($todo);
+        $todo->title = $request->title;
+        $todo->save();
+        return redirect()->back()->with('message' , 'Updated!!');
     }
 
     public function store(TodoCreateRequest $request)
