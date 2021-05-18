@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Todo;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
+ use App\Http\Requests\TodoCreateRequest;
 
 class TodoController extends Controller
 {
@@ -24,29 +25,29 @@ class TodoController extends Controller
         return view('todos.edit');
     }
 
-    public function store(Request $request)
+    public function store(TodoCreateRequest $request)
     {
 
         // $request->validate([
         //     'title' => 'required | max:255 | min:4'
         // ]);
-        $rules = [
-            'title' => 'required | max:255 | min:4'
-        ];
+        // $rules = [
+        //     'title' => 'required | max:255 | min:4'
+        // ];
 
-        $messages = [
-            'title.required' => 'title is required.',
-            'title.max' => 'Max 255 character approved',
-            'title.min' => 'Min 4 character approved'
-        ];
+        // $messages = [
+        //     'title.required' => 'title is required.',
+        //     'title.max' => 'Max 255 character approved',
+        //     'title.min' => 'Min 4 character approved'
+        // ];
         
-        $validator = Validator::make($request->all(), $rules, $messages);
+        // $validator = Validator::make($request->all(), $rules, $messages);
 
-        if ($validator->fails()) {
-            return redirect()->back()
-                        ->withErrors($validator)
-                        ->withInput();
-        }
+        // if ($validator->fails()) {
+        //     return redirect()->back()
+        //                 ->withErrors($validator)
+        //                 ->withInput();
+        // }
 
         Todo::create($request->all());
         return redirect()->back()->with('message', 'Todo Created Successfully');
