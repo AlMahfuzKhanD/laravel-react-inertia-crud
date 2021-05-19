@@ -12,7 +12,7 @@ class TodoController extends Controller
     //
     public function index()
     {
-        $todos = Todo::all();
+        $todos = Todo::orderBy('completed')->get();
         
         return view('todos.index')->with(['todos'=>$todos]);
     }
@@ -34,6 +34,17 @@ class TodoController extends Controller
         $todo->title = $request->title;
         $todo->save();
         return redirect()->back()->with('message' , 'Updated!!');
+    }
+    public function complete(Todo $todo)
+    {
+       $todo->update(['completed'=>true]);
+       return redirect()->back()->with('message' , 'Task Marked as completed!!');
+    }
+
+    public function incomplete(Todo $todo)
+    {
+       $todo->update(['completed'=>false]);
+       return redirect()->back()->with('error' , 'Task Marked as incomplete!!');
     }
 
     public function store(TodoCreateRequest $request)
