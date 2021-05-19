@@ -27,6 +27,13 @@ class TodoController extends Controller
         return view('todos.edit', compact('todo'));
     }
 
+    public function delete(Todo $todo)
+    {   
+        $todo->delete();
+        return redirect()->back()->with('error' , 'Todo Deleted!!');
+    }
+
+
     public function update(TodoCreateRequest $request, Todo $todo)
     {
         
