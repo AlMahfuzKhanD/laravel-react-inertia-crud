@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Validator;
 class TodoController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $todos = Todo::orderBy('completed')->get();
@@ -27,7 +31,7 @@ class TodoController extends Controller
         return view('todos.edit', compact('todo'));
     }
 
-    public function delete(Todo $todo)
+    public function destroy(Todo $todo)
     {   
         $todo->delete();
         return redirect()->back()->with('error' , 'Todo Deleted!!');

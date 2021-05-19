@@ -10,5 +10,5 @@
             <input type="text" name="title" id="" class="py-2 px-2 border rounded" value="{{ $todo->title }}">
             <input type="submit" value="Update" class="p-2 border rounded">
         </form>
-        <a class="m-5 py-2 px-1 rounded bg-blue-400 text-white " href="/todos">All Todo</a>
+        <a class="m-5 py-2 px-1 rounded bg-blue-400 text-white " href="{{ route('todo.index') }}">All Todo</a>
 @endsection

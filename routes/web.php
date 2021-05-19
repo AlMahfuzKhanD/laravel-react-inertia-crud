@@ -19,15 +19,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::middleware('auth')->group(function () {
+    Route::resource('todo', 'TodoController');
 
-Route::get('/todos', 'TodoController@index');
-Route::get('/todos/create', 'TodoController@create');
-Route::get('/todos/{todo}/edit', 'TodoController@edit');
-Route::delete('/todos/{todo}/delete', 'TodoController@delete')->name('todo.delete');
-Route::post('/todos/create', 'TodoController@store');
-Route::patch('/todos/{todo}/update', 'TodoController@update')->name('todo.update');
+// Route::get('/todos', 'TodoController@index');
+// Route::get('/todos/create', 'TodoController@create');
+// Route::get('/todos/{todo}/edit', 'TodoController@edit');
+// Route::delete('/todos/{todo}/delete', 'TodoController@delete')->name('todo.delete');
+// Route::post('/todos/create', 'TodoController@store');
+// Route::patch('/todos/{todo}/update', 'TodoController@update')->name('todo.update');
+
+
 Route::put('/todos/{todo}/complete', 'TodoController@complete')->name('todo.complete');
 Route::put('/todos/{todo}/incomplete', 'TodoController@incomplete')->name('todo.incomplete');
+// });
+
+
 
 
 
