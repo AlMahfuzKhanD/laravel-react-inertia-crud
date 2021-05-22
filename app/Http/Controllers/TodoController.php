@@ -82,7 +82,10 @@ class TodoController extends Controller
         //                 ->withInput();
         // }
 
-        Todo::create($request->all());
+        //dd(auth()->user()->todos());
+        auth()->user()->todos()->create($request->all()); //create with eloquent
+
+        // Todo::create($request->all());
         return redirect()->back()->with('message', 'Todo Created Successfully');
     }
 }
