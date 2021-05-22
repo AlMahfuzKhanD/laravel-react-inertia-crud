@@ -72,6 +72,7 @@ class User extends Authenticatable
     
     public function todos()
     {
+        // return $this->hasMany(Todo::class)->orderBy('completed')->get(); // i can use orderBy also here
         return $this->hasMany(Todo::class);
     }
 

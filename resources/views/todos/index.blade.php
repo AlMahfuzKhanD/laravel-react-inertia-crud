@@ -8,35 +8,44 @@
 </div>
 <ul class="my-5"> 
     <x-alert/>
-    @foreach ($todos as $todo)
-        <li class="flex justify-between py-2">
-            <div>
-                @include('todos.todoCompleteButton')
-            </div>
-            @if ($todo->completed)
-            <p class="mx-5 py-1 px-1 line-through">{{ $todo->title }}</p> 
-            @else
-            <p  class="mx-5 py-1 px-1">{{ $todo->title }}</p>  
-            @endif
+    
+    @forelse ($todos as $todo)
+    <li class="flex justify-between py-2">
+        <div>
+            @include('todos.todoCompleteButton')
+        </div>
+        @if ($todo->completed)
+        <p class="mx-5 py-1 px-1 line-through">{{ $todo->title }}</p> 
+        @else
+        <p  class="mx-5 py-1 px-1">{{ $todo->title }}</p>  
+        @endif
+        
+        <div>   
+            <a class=" py-1 px-1 text-purple-400" href="{{ route('todo.edit',$todo->id) }}"><span class="fas fa-pen px-2" /></a>
+            <span 
+            onclick="event.preventDefault();
+            if(confirm('are you sure you want to delete?')){
+                document.getElementById('form-delete-{{ $todo->id }}').submit()
+            }"
             
-            <div>   
-                <a class=" py-1 px-1 text-purple-400" href="{{ route('todo.edit',$todo->id) }}"><span class="fas fa-edit px-2" /></a>
-                <span 
-                onclick="event.preventDefault();
-                if(confirm('are you sure you want to delete?')){
-                    document.getElementById('form-delete-{{ $todo->id }}').submit()
-                }"
-                
-                 class="fas fa-trash px-4 text-red-400 cursor-pointer"/>
-                    <form style="display: none;" id="{{ 'form-delete-'.$todo->id }}" action="{{ route('todo.destroy',$todo->id) }}" method="post">
-                        @csrf
-                        @method('delete')
-                    </form>
-                
-                
-            </div>
+             class="fas fa-times px-4 text-red-500 cursor-pointer"/>
+                <form style="display: none;" id="{{ 'form-delete-'.$todo->id }}" action="{{ route('todo.destroy',$todo->id) }}" method="post">
+                    @csrf
+                    @method('delete')
+                </form>
             
-        </li> 
-    @endforeach
+            
+        </div>
+        
+    </li> 
+
+    @empty
+    <p>Todo List is Empty. Please add</p> 
+    @endforelse
+
+   
+    
+    
+    
 </ul>
 @endsection

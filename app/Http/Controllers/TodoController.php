@@ -16,7 +16,11 @@ class TodoController extends Controller
     }
     public function index()
     {
-        $todos = Todo::orderBy('completed')->get();
+        //dd(auth()->user()->todos);
+        //$todos = auth()->user()->todos()->orderBy('completed')->get(); //show todo using one to many eloquent
+        $todos = auth()->user()->todos->sortBy('completed'); //show todo using one to many eloquent and sortBy collection helper method
+        // return $todos;
+        // $todos = Todo::orderBy('completed')->get(); //show todo without eloquent
         
         return view('todos.index')->with(['todos'=>$todos]);
     }
@@ -42,9 +46,10 @@ class TodoController extends Controller
     {
         
         //dd($todo);
+        //auth()->user()->todos()->update($request->title);
         $todo->title = $request->title;
         $todo->save();
-        return redirect()->back()->with('message' , 'Updated!!');
+        return redirect(route('todo.index'))->with('message' , 'Updated!!');
     }
     public function complete(Todo $todo)
     {
@@ -86,6 +91,6 @@ class TodoController extends Controller
         auth()->user()->todos()->create($request->all()); //create with eloquent
 
         // Todo::create($request->all());
-        return redirect()->back()->with('message', 'Todo Created Successfully');
+        return redirect(route('todo.index'))->with('message', 'Todo Created Successfully');
     }
 }
