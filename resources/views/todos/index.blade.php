@@ -17,7 +17,7 @@
         @if ($todo->completed)
         <p class="mx-5 py-1 px-1 line-through">{{ $todo->title }}</p> 
         @else
-        <p  class="mx-5 py-1 px-1">{{ $todo->title }}</p>  
+        <a  class="mx-5 py-1 px-1 cursor-pointer" href="{{ route('todo.show',$todo->id) }}">{{ $todo->title }}</a>  
         @endif
         
         <div>   

@@ -12,8 +12,14 @@
 
         <form action="{{ route('todo.store') }}" method="post" class="py-5">
             @csrf
-            <input type="text" name="title" id="" class="py-2 px-2 border rounded">
-            <input type="submit" value="Create" class="p-2 border rounded">
+            <div class="py-1"><input type="text" name="title" id="" class="py-2 px-2 border rounded" placeholder="title"></div>
+            <div class="py-1">
+                <textarea type="text" name="description" id="" class="p-4 rounded border" placeholder="Description"></textarea>
+            </div>
+            <div class="py-1"><input type="submit" value="Create" class="p-2 border rounded"></div>
+            
+            
+            
         </form>
         
 @endsection

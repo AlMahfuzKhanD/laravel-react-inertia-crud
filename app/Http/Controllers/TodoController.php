@@ -30,6 +30,11 @@ class TodoController extends Controller
         return view('todos.create');
     }
 
+    public function show(Todo $todo)
+    {
+       return view('todos.show', compact('todo'));
+    }
+
     public function edit(Todo $todo)
     {   
         return view('todos.edit', compact('todo'));
@@ -48,6 +53,7 @@ class TodoController extends Controller
         //dd($todo);
         //auth()->user()->todos()->update($request->title);
         $todo->title = $request->title;
+        $todo->description = $request->description;
         $todo->save();
         return redirect(route('todo.index'))->with('message' , 'Updated!!');
     }
