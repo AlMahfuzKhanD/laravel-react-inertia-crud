@@ -16,6 +16,18 @@
             <div class="py-1">
                 <textarea type="text" name="description" id="" class="p-4 rounded border" placeholder="Description"></textarea>
             </div>
+
+            <div class="py-1">
+
+                <div class="flex justify-center pb-4">
+                    <h3 class="text-lg pb-4">Add Steps</h3>
+    
+                <span class="fas fa-plus px-2 py-2 cursor-pointer"></span>
+                    
+                </div>
+                
+                <input type="text" name="step" id="" class="py-2 px-2 border rounded" placeholder="Step">
+            </div>
             <div class="py-1"><input type="submit" value="Create" class="p-2 border rounded"></div>
             
             
