@@ -21,7 +21,7 @@ class TodoController extends Controller
         $todos = auth()->user()->todos->sortBy('completed'); //show todo using one to many eloquent and sortBy collection helper method
         // return $todos;
         // $todos = Todo::orderBy('completed')->get(); //show todo without eloquent
-        
+
         return view('todos.index')->with(['todos'=>$todos]);
     }
 
@@ -36,12 +36,12 @@ class TodoController extends Controller
     }
 
     public function edit(Todo $todo)
-    {   
+    {
         return view('todos.edit', compact('todo'));
     }
 
     public function destroy(Todo $todo)
-    {   
+    {
         $todo->delete();
         return redirect()->back()->with('error' , 'Todo Deleted!!');
     }
@@ -49,7 +49,7 @@ class TodoController extends Controller
 
     public function update(TodoCreateRequest $request, Todo $todo)
     {
-        
+
         //dd($todo);
         //auth()->user()->todos()->update($request->title);
         $todo->title = $request->title;
@@ -71,7 +71,7 @@ class TodoController extends Controller
 
     public function store(TodoCreateRequest $request)
     {
-
+        dd($request->all());
         // $request->validate([
         //     'title' => 'required | max:255 | min:4'
         // ]);
@@ -84,7 +84,7 @@ class TodoController extends Controller
         //     'title.max' => 'Max 255 character approved',
         //     'title.min' => 'Min 4 character approved'
         // ];
-        
+
         // $validator = Validator::make($request->all(), $rules, $messages);
 
         // if ($validator->fails()) {
