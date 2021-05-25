@@ -13,6 +13,11 @@ class Step extends Component
         $this->steps++;
     }
 
+    public function decrement()
+    {
+        $this->steps--;
+    }
+
     public function render()
     {
         return view('livewire.step');
