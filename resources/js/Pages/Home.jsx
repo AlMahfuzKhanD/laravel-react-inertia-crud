@@ -7,9 +7,11 @@ export default function Home({ posts }) {
     const { flash } = usePage().props;
     const { component } = usePage();
     const [flashMsg, setFlashMsg] = useState(flash.message);
+    const [flashSuccessMsg, setFlashSuccessMsg] = useState(flash.success);
 
     setTimeout(() => {
         setFlashMsg(null);
+        setFlashSuccessMsg(null);
     }, 1000);
     return (
         <>
@@ -21,6 +23,12 @@ export default function Home({ posts }) {
                     {flashMsg}
                 </div>
             )}
+            {flashSuccessMsg && (
+                <div className="absolute top-24 right-6 bg-green-500 p-2 rounded-md shadow-lg text-sm text-white">
+                    {flashSuccessMsg}
+                </div>
+            )}
+
             <div>
                 {posts.data.map((post) => (
                     <div key={post.id} className="p-4 border-b">
