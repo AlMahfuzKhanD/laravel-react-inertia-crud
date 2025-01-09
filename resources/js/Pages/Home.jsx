@@ -1,10 +1,11 @@
 import { Link } from "@inertiajs/react";
+import { useRoute } from "../../../vendor/tightenco/ziggy";
 
 export default function Home({ posts }) {
-    console.log(posts);
+    const route = useRoute();
     return (
         <>
-            <h1 className="title">Hello {name}</h1>
+            <h1 className="title">Hello </h1>
             <div>
                 {posts.data.map((post) => (
                     <div key={post.id} className="p-4 border-b">
@@ -15,10 +16,19 @@ export default function Home({ posts }) {
                             </span>
                         </div>
                         <p className="font-medium">{post.body}</p>
+                        {/* <Link href={`/posts/${post.id}`} className="text-link">
+                            Read more..
+                        </Link> */}
+                        <Link
+                            href={route("posts.show", post)}
+                            className="text-link"
+                        >
+                            Read more..
+                        </Link>
                     </div>
                 ))}
             </div>
-            <div className="p-2">
+            <div className="py-12 px-4">
                 {posts.links.map((link) =>
                     link.url ? (
                         <Link
