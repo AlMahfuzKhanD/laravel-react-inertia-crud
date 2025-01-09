@@ -1,8 +1,9 @@
-import { useForm } from "@inertiajs/react";
+import { useForm, Head, usePage } from "@inertiajs/react";
 import { useRoute } from "../../../vendor/tightenco/ziggy";
 
 export default function Name({ post }) {
     const { delete: destroy } = useForm();
+    const { component } = usePage();
     function submit(e) {
         e.preventDefault();
         // destroy(`/posts/${post.id}`);
@@ -10,6 +11,7 @@ export default function Name({ post }) {
     }
     return (
         <>
+            <Head title={component} />
             <div className="p-4 border-b">
                 <div className="text-sm text-slate-600">
                     <span>Posted on: </span>

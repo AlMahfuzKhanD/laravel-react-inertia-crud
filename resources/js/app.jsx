@@ -5,6 +5,7 @@ import { createRoot } from "react-dom/client";
 import Layout from "./Layouts/Layout";
 
 createInertiaApp({
+    title: (title) => (title ? `${title} - Laravel Inertia React` : ""), // set global title
     resolve: (name) => {
         const pages = import.meta.glob("./Pages/**/*.jsx", { eager: true });
         let page = pages[`./Pages/${name}.jsx`];
